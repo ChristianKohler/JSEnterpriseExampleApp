@@ -1,0 +1,11 @@
+<div>
+  <div>
+    datepicker placeholder
+  </div>
+  <div>
+    <ul>
+      <li ng-repeat="proposal in ctrl.getProposalForDate()"
+          ng-click="ctrl.appointment.time = proposal">{{proposal}}</li>
+    </ul>
+  </div>
+</div>
