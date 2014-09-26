@@ -1,0 +1,10 @@
+{
+  "name": "JsEnterpriseAngularApp",
+  "version": "0.0.1",
+  "description": "JavaScript Enterprise Workshop Example Application",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-webserver": "~0.8.2"
+  }
+}
