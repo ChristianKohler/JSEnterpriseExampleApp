@@ -1,4 +1,4 @@
-# README #
+# JS Enterprise Sample Application #
 
 ### What is this repository for? ###
 
