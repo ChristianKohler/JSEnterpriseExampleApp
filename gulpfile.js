@@ -11,7 +11,7 @@ var server = {
 };
 
 
-var path = {
+var paths = {
   ourJsFiles: ['app/**/*.js', 'test/**/*.js', '!app/lib/**/*']
 
 };
@@ -29,7 +29,7 @@ gulp.task('webserver', ['lint'], function () {
 
 
 gulp.task('lint', function () {
-  gulp.src(path.ourJsFiles)
+  gulp.src(paths.ourJsFiles)
     .pipe(eslint())
     .pipe(eslint.format());
 });
@@ -57,7 +57,9 @@ gulp.task('tdd', function (done) {
   }, done);
 });
 
-
-gulp.task('default', ['webserver', 'tdd'], function () {
-  gulp.watch(path.ourJsFiles, ['lint']);
+gulp.task('watch', function () {
+  gulp.watch(paths.ourJsFiles, ['lint']);
 });
+
+
+gulp.task('default', ['webserver', 'tdd', 'watch']);

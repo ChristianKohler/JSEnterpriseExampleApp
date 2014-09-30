@@ -12,16 +12,13 @@ describe('StateValidityService', function () {
 
   beforeEach(angular.mock.module('JSEnterpriseWorkshopApp'));
 
-
   beforeEach(inject(function (_StateValidityService_) {
     StateValidityService = _StateValidityService_;
   }));
 
-
   it('must be defined', function () {
     expect(StateValidityService).toBeDefined();
   });
-
 
   describe('#isValidStateTransition()', function () {
 
@@ -86,8 +83,6 @@ describe('StateValidityService', function () {
       })).toBe(true);
     });
 
-
   });
-
 
 });
