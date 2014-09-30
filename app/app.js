@@ -1,13 +1,22 @@
 (function () {
   'use strict';
 
+  var States = {
+    PRODUCT: 'wizard.product',
+    CONTACTDETAILS: 'wizard.contactdetails',
+    DATE: 'wizard.date',
+    CONFIRMATION: 'wizard.confirmation'
+  };
+
   angular.module('JSEnterpriseWorkshopApp', ['ui.router'])
+    .constant('States', States)
     .config(moduleConfig)
     .factory('AppointmentService', AppointmentService)
     .factory('StateValidityService', StateValidityService)
     .controller('WizardCtrl', WizardCtrl);
 
-  function moduleConfig($stateProvider, $urlRouterProvider) {
+
+  function moduleConfig($stateProvider, $urlRouterProvider, States) {
     $stateProvider
       .state('wizard', {
         abstract: true,
@@ -15,26 +24,25 @@
         templateUrl: 'templates/wizard.html',
         controller: 'WizardCtrl as ctrl'
       })
-      .state('wizard.product', {
+      .state(States.PRODUCT, {
         url: '/product',
         templateUrl: 'templates/wizard-product.html'
       })
-      .state('wizard.date', {
+      .state(States.DATE, {
         url: '/date',
         templateUrl: 'templates/wizard-date.html'
       })
-      .state('wizard.contactdetails', {
+      .state(States.CONTACTDETAILS, {
         url: '/contactdetails',
         templateUrl: 'templates/wizard-contactdetails.html'
       })
-      .state('wizard.confirmation', {
+      .state(States.CONFIRMATION, {
         url: '/confirmation',
         templateUrl: 'templates/wizard-confirmation.html'
       });
 
     $urlRouterProvider.otherwise('/wizard/product');
   }
-
 
   function WizardCtrl($scope, AppointmentService, StateValidityService) {
 
@@ -60,7 +68,7 @@
    * @returns {{isValidStateTransition: isValidStateTransition}}
    * @constructor
    */
-  function StateValidityService() {
+  function StateValidityService(States) {
 
     return {
       isValidStateTransition: isValidStateTransition
@@ -68,13 +76,13 @@
 
     function isValidStateTransition(stateName, appointment) {
       switch (stateName) {
-        case 'wizard.product':
+        case States.PRODUCT :
           return true;
-        case 'wizard.date':
+        case States.DATE :
           return !!appointment.product;
-        case 'wizard.contactdetails':
+        case States.CONTACTDETAILS :
           return !!appointment.date && !!appointment.time;
-        case 'wizard.confirmation':
+        case States.CONFIRMATION :
           return !!appointment.date && !!appointment.time && !!appointment.fullname && !!appointment.email;
       }
       return false;
