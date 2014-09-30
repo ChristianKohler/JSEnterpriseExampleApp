@@ -1,6 +1,10 @@
 <div>
-  <h2>Choose Product</h2>
-  <select ng-model="ctrl.appointment.product" ng-options="product.label for product in ctrl.products">
-    <option value="">-- choose product --</option>
-  </select>
+    <h2>Choose Product</h2>
+    <select class="form-control" ng-model="ctrl.appointment.product"
+            ng-options="product.label for product in ctrl.products">
+        <option value="">-- choose product --</option>
+    </select>
+
+    <a ui-sref="wizard.date" ng-class="{'disabled':!ctrl.canSwitchToState('wizard.date')}"
+       class="pull-right btn btn-primary">Next <i class="fa fa-chevron-right"></i></a>
 </div>

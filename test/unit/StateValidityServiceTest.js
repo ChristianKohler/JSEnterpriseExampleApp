@@ -33,8 +33,16 @@ describe('StateValidityService', function () {
       })).toBe(false);
     });
 
-    it('should return true when switching to contactdetails, if date and time is set', function () {
+    it('should return false when switching to contactdetails, if appointment has no product', function () {
       expect(StateValidityService.isValidStateTransition(States.CONTACTDETAILS, {
+        date: 'someDate',
+        time: 'time'
+      })).toBe(false);
+    });
+
+    it('should return true when switching to contactdetails, if date, time and product is set', function () {
+      expect(StateValidityService.isValidStateTransition(States.CONTACTDETAILS, {
+        product: 'someProduct',
         date: 'someDate',
         time: 'someTime'
       })).toBe(true);
@@ -67,10 +75,20 @@ describe('StateValidityService', function () {
       })).toBe(false);
     });
 
+    it('should return false when switching to confirmation, if appointment is missing product', function () {
+      expect(StateValidityService.isValidStateTransition(States.CONFIRMATION, {
+        date: 'date',
+        time: 'time',
+        fullname: 'someFullname',
+        email: 'someEmail'
+      })).toBe(false);
+    });
+
     it('should return true when switching to confirmation, if appointment has all needed attributes set', function () {
       expect(StateValidityService.isValidStateTransition(States.CONFIRMATION, {
         date: 'date',
         time: 'time',
+        product: 'product',
         fullname: 'someFullname',
         email: 'email'
       })).toBe(true);

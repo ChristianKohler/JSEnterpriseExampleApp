@@ -2,7 +2,8 @@ var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var webserver = require('gulp-webserver');
 var karma = require('karma').server;
-
+var protractor = require('gulp-protractor').protractor;
+var webdriverStandalone = require('gulp-protractor').webdriver_standalone;
 
 var server = {
   host: 'localhost',
@@ -12,8 +13,7 @@ var server = {
 
 
 var paths = {
-  ourJsFiles: ['app/**/*.js', 'test/**/*.js', '!app/lib/**/*']
-
+  ourJsFiles: ['app/**/*.js', 'test/**/*.js', '!app/lib/**/*', '!protractor.conf.js']
 };
 
 gulp.task('webserver', ['lint'], function () {
@@ -34,9 +34,23 @@ gulp.task('lint', function () {
     .pipe(eslint.format());
 });
 
+gulp.task('seleniumServer', webdriverStandalone);
 
 /**
- * Runs our mocha unit tests with karma
+ * Runs our e2e tests
+ * */
+gulp.task('e2e', function () {
+  gulp.src(['test/e2e/*.js'])
+    .pipe(protractor({
+      configFile: 'protractor.conf.js'
+    }))
+    .on('error', function (err) {
+      throw err;
+    });
+});
+
+/**
+ * Runs our unit tests with karma
  * */
 gulp.task('test', function (done) {
   karma.start({
@@ -45,7 +59,6 @@ gulp.task('test', function (done) {
     autoWatch: false
   }, done);
 });
-
 
 /**
  * Watch for file changes and re-run tests on each change
@@ -62,4 +75,4 @@ gulp.task('watch', function () {
 });
 
 
-gulp.task('default', ['webserver', 'tdd', 'watch']);
+gulp.task('default', ['webserver', 'tdd', 'seleniumServer', 'watch']);

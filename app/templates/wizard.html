@@ -1,16 +1,36 @@
-<div>
-    <div>
-        <a ng-class="{'disabled':!ctrl.canSwitchToState('wizard.product')}" ui-sref-active="active"
-           ui-sref=".product"><span>1</span> Product</a>
-        <a ng-class="{'disabled':!ctrl.canSwitchToState('wizard.date')}" ui-sref-active="active"
-           ui-sref=".date"><span>2</span> Date & Time</a>
-        <a ng-class="{'disabled':!ctrl.canSwitchToState('wizard.contactdetails')}" ui-sref-active="active"
-           ui-sref=".contactdetails"><span>3</span> Contactdetails</a>
-        <a ng-class="{'disabled':!ctrl.canSwitchToState('wizard.confirmation')}" ui-sref-active="active"
-           ui-sref=".confirmation"><span>4</span> Confirmation</a>
-    </div>
-    <div ui-view></div>
-    <div>
-        {{ctrl.appointment}}
+<div class="container container-jse">
+
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Kami</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li ng-class="{'disabled':!ctrl.canSwitchToState('wizard.product')}">
+                    <a ui-sref-active="active"
+                       ui-sref=".product"><span>1</span> Product</a>
+                </li>
+                <li ng-class="{'disabled':!ctrl.canSwitchToState('wizard.date')}">
+                    <a ui-sref-active="active"
+                       ui-sref=".date"><span>2</span> Date & Time</a>
+                </li>
+                <li ng-class="{'disabled':!ctrl.canSwitchToState('wizard.contactdetails')}">
+                    <a ui-sref-active="active"
+                       ui-sref=".contactdetails"><span>3</span> Contactdetails</a>
+                </li>
+                <li ng-class="{'disabled':!ctrl.canSwitchToState('wizard.confirmation')}">
+                    <a ui-sref-active="active"
+                       ui-sref=".confirmation"><span>4</span> Confirmation</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="row">
+        <form name="kamiForm" novalidate >
+            <div class="col-md-7" ui-view="mainView"></div>
+            <div class="col-md-5" ui-view="sideView"></div>
+        </form>
     </div>
 </div>

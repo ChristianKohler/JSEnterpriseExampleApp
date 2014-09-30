@@ -19,6 +19,7 @@
   "dependencies": {
     "angular": "~1.2.25",
     "angular-ui-router": "~0.2.11",
-    "angular-mocks": "~1.2.25"
+    "angular-mocks": "~1.2.25",
+    "fontAwesome": "https://github.com/FortAwesome/Font-Awesome.git"
   }
 }

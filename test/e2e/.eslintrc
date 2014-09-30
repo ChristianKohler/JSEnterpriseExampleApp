@@ -1,0 +1,13 @@
+{
+  "globals": {
+    "describe": "false",
+    "it": "false",
+    "by": "false",
+    "element": "false",
+    "browser": "false",
+    "beforeEach": "false",
+    "afterEach": "false",
+    "expect": "false",
+    "inject": "false"
+  }
+}

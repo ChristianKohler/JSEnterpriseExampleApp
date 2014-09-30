@@ -1,7 +1,13 @@
-<div>
-  <h2>Confirmation</h2>
-  <p><b>Product: </b>{{ctrl.appointment.product.label}}</p>
-  <p><b>Datetime: </b>{{ctrl.appointment.time}}</p>
-  <p><b>Fullname: </b>{{ctrl.appointment.fullname}}</p>
-  <p><b>Email: </b>{{ctrl.appointment.email}}</p>
+<div class="well">
+    <h2>Appointment</h2>
+    <dl class="dl-horizontal ">
+        <dt>Product:</dt>
+        <dd>{{ctrl.appointment.product.label}}</dd>
+        <dt>Datetime</dt>
+        <dd><span>{{ctrl.appointment.date}}</span> <span>{{ctrl.appointment.time}}</span></dd>
+        <dt>Fullname</dt>
+        <dd>{{ctrl.appointment.fullname}}</dd>
+        <dt>Email</dt>
+        <dd>{{ctrl.appointment.email}}</dd>
+    </dl>
 </div>

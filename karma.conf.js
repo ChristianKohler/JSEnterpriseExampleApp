@@ -9,7 +9,7 @@ module.exports = function (config) {
       'app/lib/angular-mocks/angular-mocks.js',
       'app/lib/angular-ui-router/release/angular-ui-router.min.js',
       'app/*.js',
-      'test/**/*.js'
+      'test/unit/**/*.js'
     ],
 
     exclude: [

@@ -1,0 +1,9 @@
+
+dl.dl-horizontal dt {
+    text-align: left;
+}
+
+.has-error .form-control, .has-error .form-control:focus {
+    box-shadow: 0 0 12px #e74c3c;
+    border: 1px solid #e74c3c;
+}

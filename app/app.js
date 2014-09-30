@@ -26,19 +26,44 @@
       })
       .state(States.PRODUCT, {
         url: '/product',
-        templateUrl: 'templates/wizard-product.html'
+        views: {
+          mainView: {
+            templateUrl: 'templates/wizard-product.html'
+          },
+          sideView: {
+            templateUrl: 'templates/wizard-confirmation.html'
+          }
+        }
       })
       .state(States.DATE, {
         url: '/date',
-        templateUrl: 'templates/wizard-date.html'
+        views: {
+          mainView: {
+            templateUrl: 'templates/wizard-date.html'
+          },
+          sideView: {
+            templateUrl: 'templates/wizard-confirmation.html'
+          }
+        }
       })
       .state(States.CONTACTDETAILS, {
         url: '/contactdetails',
-        templateUrl: 'templates/wizard-contactdetails.html'
+        views: {
+          mainView: {
+            templateUrl: 'templates/wizard-contactdetails.html'
+          },
+          sideView: {
+            templateUrl: 'templates/wizard-confirmation.html'
+          }
+        }
       })
       .state(States.CONFIRMATION, {
         url: '/confirmation',
-        templateUrl: 'templates/wizard-confirmation.html'
+        views: {
+          mainView: {
+            templateUrl: 'templates/wizard-confirmation.html'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/wizard/product');
@@ -63,11 +88,6 @@
     });
   }
 
-  /**
-   *
-   * @returns {{isValidStateTransition: isValidStateTransition}}
-   * @constructor
-   */
   function StateValidityService(States) {
 
     return {
@@ -81,9 +101,9 @@
         case States.DATE :
           return !!appointment.product;
         case States.CONTACTDETAILS :
-          return !!appointment.date && !!appointment.time;
+          return !!appointment.product && !!appointment.date && !!appointment.time;
         case States.CONFIRMATION :
-          return !!appointment.date && !!appointment.time && !!appointment.fullname && !!appointment.email;
+          return !!appointment.product && !!appointment.date && !!appointment.time && !!appointment.fullname && !!appointment.email;
       }
       return false;
     }

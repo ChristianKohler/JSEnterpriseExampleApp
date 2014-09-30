@@ -1,13 +1,19 @@
 <div>
+    <h2>Choose Date and Time</h2>
+
     <div>
-        datepicker placeholder
-        <button ng-click="ctrl.appointment.date='some'">setDate</button>
+        <input type="date" class="form-control" ng-model="ctrl.appointment.date"/>
     </div>
-    <div>
-        <ul>
-            <li ng-repeat="proposal in ctrl.getProposalForDate()"
-                ng-click="ctrl.appointment.time = proposal">{{proposal}}
-            </li>
-        </ul>
+    <div class="btn-group">
+        <button ng-repeat="proposal in ctrl.getProposalForDate()" class="btn btn-primary"
+                ng-click="ctrl.appointment.time = proposal" ng-class="{'active':ctrl.appointment.time == proposal}">
+            {{proposal}}
+        </button>
     </div>
+
+    <div class="row">
+        <a ui-sref="wizard.contactdetails" ng-class="{'disabled':!ctrl.canSwitchToState('wizard.contactdetails')}"
+           class="pull-right btn btn-primary">Next <i class="fa fa-chevron-right"></i></a>
+    </div>
+
 </div>
