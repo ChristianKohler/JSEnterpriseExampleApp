@@ -1,12 +1,16 @@
 <div>
-  <div>
-    <a ui-sref-active="active" ui-sref=".product"><span>1</span> Product</a>
-    <a ui-sref-active="active" ui-sref=".date"><span>2</span> Date & Time</a>
-    <a ui-sref-active="active" ui-sref=".contactdetails"><span>3</span> Contactdetails</a>
-    <a ui-sref-active="active" ui-sref=".confirmation"><span>4</span> Confirmation</a>
-  </div>
-  <div ui-view></div>
-  <div>
-    {{ctrl.appointment}}
-  </div>
+    <div>
+        <a ng-class="{'disabled':!ctrl.canSwitchToState('wizard.product')}" ui-sref-active="active"
+           ui-sref=".product"><span>1</span> Product</a>
+        <a ng-class="{'disabled':!ctrl.canSwitchToState('wizard.date')}" ui-sref-active="active"
+           ui-sref=".date"><span>2</span> Date & Time</a>
+        <a ng-class="{'disabled':!ctrl.canSwitchToState('wizard.contactdetails')}" ui-sref-active="active"
+           ui-sref=".contactdetails"><span>3</span> Contactdetails</a>
+        <a ng-class="{'disabled':!ctrl.canSwitchToState('wizard.confirmation')}" ui-sref-active="active"
+           ui-sref=".confirmation"><span>4</span> Confirmation</a>
+    </div>
+    <div ui-view></div>
+    <div>
+        {{ctrl.appointment}}
+    </div>
 </div>

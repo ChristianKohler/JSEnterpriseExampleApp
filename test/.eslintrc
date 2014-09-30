@@ -9,6 +9,13 @@
     "no-use-before-define": 0
   },
   "globals": {
-    "angular": "false"
+    "angular": "false",
+    "describe": "false",
+    "it": "false",
+    "beforeEach": "false",
+    "afterEach": "false",
+    "expect": "false",
+    "inject": "false"
+
   }
 }

@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var webserver = require('gulp-webserver');
+var karma = require('karma').server;
+
 
 var server = {
   host: 'localhost',
@@ -23,8 +25,6 @@ gulp.task('webserver', ['lint'], function () {
       livereload: true,
       directoryListing: false
     }));
-
-  gulp.watch(path.ourJsFiles, ['lint']);
 });
 
 
@@ -32,8 +32,32 @@ gulp.task('lint', function () {
   gulp.src(path.ourJsFiles)
     .pipe(eslint())
     .pipe(eslint.format());
-
 });
 
 
-gulp.task('default', ['webserver']);
+/**
+ * Runs our mocha unit tests with karma
+ * */
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true,
+    autoWatch: false
+  }, done);
+});
+
+
+/**
+ * Watch for file changes and re-run tests on each change
+ * */
+gulp.task('tdd', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    autoWatch: true
+  }, done);
+});
+
+
+gulp.task('default', ['webserver', 'tdd'], function () {
+  gulp.watch(path.ourJsFiles, ['lint']);
+});
