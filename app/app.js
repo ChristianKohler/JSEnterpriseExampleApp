@@ -85,6 +85,11 @@
       if (!StateValidityService.isValidStateTransition(toState.name, vm.appointment)) {
         event.preventDefault();
       }
+
+      if(toState.name === States.CONFIRMATION){
+        vm.appointment.confirmed = true;
+      }
+
     });
   }
 
@@ -97,11 +102,11 @@
     function isValidStateTransition(stateName, appointment) {
       switch (stateName) {
         case States.PRODUCT :
-          return true;
+          return !appointment.confirmed;
         case States.DATE :
-          return !!appointment.product;
+          return !appointment.confirmed && !!appointment.product;
         case States.CONTACTDETAILS :
-          return !!appointment.product && !!appointment.date && !!appointment.time;
+          return !appointment.confirmed && !!appointment.product && !!appointment.date && !!appointment.time;
         case States.CONFIRMATION :
           return !!appointment.product && !!appointment.date && !!appointment.time && !!appointment.fullname && !!appointment.email;
       }
