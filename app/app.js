@@ -88,7 +88,7 @@
     });
   }
 
-  function StateValidityService(STATES) {
+  function StateValidityService(States) {
 
     return {
       isValidStateTransition: isValidStateTransition
