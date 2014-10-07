@@ -2,11 +2,11 @@
     <h2>Contact details</h2>
 
     <div>
-        <label class="control-label" for="fullname">Fullname</label>
+        <label class="control-label" for="fullname">Fullname *</label>
         <input id="fullname" class="form-control" type="text" name="fullname" ng-model="ctrl.appointment.fullname">
     </div>
     <div class="form-group" ng-class="{'has-error':kamiForm.email.$invalid}">
-        <label class="control-label" for="email">Email</label>
+        <label class="control-label" for="email">Email *</label>
         <input id="email" class="form-control" type="email" name="email" ng-model="ctrl.appointment.email">
     </div>
     <a ui-sref="wizard.confirmation" ng-class="{'disabled':!ctrl.canSwitchToState('wizard.confirmation')}"
