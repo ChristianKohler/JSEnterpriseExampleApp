@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "strict": 0
+  },
+  "globals": {
+    "angular": "false",
+    "describe": "false",
+    "it": "false",
+    "beforeEach": "false",
+    "afterEach": "false",
+    "expect": "false",
+    "inject": "false"
+  }
+}
