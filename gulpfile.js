@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var webserver = require('gulp-webserver');
-var eslint = require('gulp-eslint');
 var karma = require('karma').server;
 
 var server = {
@@ -24,14 +23,6 @@ gulp.task('webserver', function () {
       directoryListing: false
     }));
 });
-
-
-gulp.task('lint', function () {
-  gulp.src(paths.ourJsFiles)
-    .pipe(eslint())
-    .pipe(eslint.format());
-});
-
 
 /**
  * Runs our unit tests with karma
@@ -59,4 +50,4 @@ gulp.task('watch', function () {
 });
 
 
-gulp.task('default', ['webserver', 'lint', 'tdd', 'watch']);
+gulp.task('default', ['webserver', 'tdd', 'watch']);
